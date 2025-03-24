@@ -9,18 +9,28 @@ import { motion } from "framer-motion"
 import axios from 'axios';
 
 export default function Tours() {
-  const [tours, setTours] = useState([])
-  const [loading, setLoading] = useState(true)
-  const [error, setError] = useState(null)
+  const [tours, setTours] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-  
-
-  // Fetch tours from API with the query parameters.
   useEffect(() => {
+    const storedTours = localStorage.getItem("toursData");
+
+    if (storedTours) {
+      setTours(JSON.parse(storedTours));
+      setLoading(false);
+    } else {
+      fetchTours();
+    }
+  }, []);
+
+  const fetchTours = () => {
+    setLoading(true);
+
     const options = {
       method: 'GET',
       url: 'https://real-time-tripadvisor-scraper-api.p.rapidapi.com/tripadvisor_hotels_search_v2',
-      params: {location: 'india'},
+      params: { location: 'india' },
       headers: {
         'x-rapidapi-key': '8b2433d626msha7dee48a2972e2ep1f6e58jsn3405de35e2f0',
         'x-rapidapi-host': 'real-time-tripadvisor-scraper-api.p.rapidapi.com'
@@ -30,13 +40,14 @@ export default function Tours() {
     axios.request(options)
       .then(response => {
         setTours(response.data.data);
+        localStorage.setItem("toursData", JSON.stringify(response.data.data));
         setLoading(false);
       })
       .catch(err => {
         setError(err);
         setLoading(false);
       });
-  }, []);
+  };
 
   if (loading) {
     return (

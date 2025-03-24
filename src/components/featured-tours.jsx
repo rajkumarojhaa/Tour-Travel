@@ -12,10 +12,23 @@ export function FeaturedTours() {
   const [error, setError] = useState(null);
 
   useEffect(() => {
+    const storedTours = localStorage.getItem("toursData");
+
+    if (storedTours) {
+      setTours(JSON.parse(storedTours));
+      setLoading(false);
+    } else {
+      fetchTours();
+    }
+  }, []);
+
+  const fetchTours = () => {
+    setLoading(true);
+
     const options = {
       method: 'GET',
       url: 'https://real-time-tripadvisor-scraper-api.p.rapidapi.com/tripadvisor_hotels_search_v2',
-      params: {location: 'india'},
+      params: { location: 'india' },
       headers: {
         'x-rapidapi-key': '8b2433d626msha7dee48a2972e2ep1f6e58jsn3405de35e2f0',
         'x-rapidapi-host': 'real-time-tripadvisor-scraper-api.p.rapidapi.com'
@@ -25,13 +38,14 @@ export function FeaturedTours() {
     axios.request(options)
       .then(response => {
         setTours(response.data.data);
+        localStorage.setItem("toursData", JSON.stringify(response.data.data));
         setLoading(false);
       })
       .catch(err => {
         setError(err);
         setLoading(false);
       });
-  }, []);
+  };
 
   if (loading) {
     return (
@@ -72,11 +86,10 @@ export function FeaturedTours() {
         </motion.div>
 
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-  {tours.slice(0, 8).map((tour) => (
-    <TourCard key={tour.id} {...tour} />
-  ))}
-</div>
-
+          {tours.slice(0, 8).map((tour) => (
+            <TourCard key={tour.id} {...tour} />
+          ))}
+        </div>
 
         <motion.div
           className="text-center mt-10"

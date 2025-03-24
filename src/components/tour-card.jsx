@@ -10,14 +10,14 @@ export function TourCard({ id, name, photos, address, price, rating, styles }) {
       <div className="relative h-48">
         <img src={photos?.[0] || "/placeholder.svg"} alt={name} className="object-cover w-full h-full" />
       </div>
-      <CardHeader className="p-4 pb-0">
+      <CardHeader className="p-4 pb-0 sm:mt-1 mt-5">
         <div className="flex justify-between items-start">
         <motion.h3 className="text-lg font-semibold line-clamp-1" whileHover={{ color: "#6366f1" }}>
             {name}
           </motion.h3>
-          <div className="flex items-center">
-            <Star className="h-4 w-4 fill-primary text-primary mr-1" />
-            <span className="text-sm font-medium">{rating?.total}</span>
+          <div className="flex items-center sm:mt-1 mt-1.5">
+            <Star className="h-4 w-4 fill-primary text-primary mr-1 " />
+            <span className="text-sm  font-medium">{rating?.total}</span>
           </div>
         </div>
         <div className="flex items-center text-muted-foreground text-sm mt-1">

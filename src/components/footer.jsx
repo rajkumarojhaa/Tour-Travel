@@ -5,7 +5,7 @@ import { motion } from "framer-motion"
 
 export function Footer() {
   return (
-    <footer className="bg-muted py-12 border-t relative overflow-hidden">
+    <footer className="bg-muted py-10 border-t relative overflow-hidden ">
       <div className="absolute inset-0 pattern-dots opacity-10 -z-10"></div>
       <div className="container grid gap-8 md:grid-cols-2 lg:grid-cols-4">
         <motion.div

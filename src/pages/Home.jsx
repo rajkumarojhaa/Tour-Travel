@@ -11,9 +11,9 @@ import { motion } from "framer-motion"
 
 export default function Home() {
   return (
-    <div className="flex flex-col min-h-screen site-wrapper">
+    <div className="flex flex-col min-h-screen overflow-hidden">
       <Header />
-      <main className="flex-1 site-content">
+      <main className="flex-1 site-content overflow-hidden">
         <Banner
           title="Discover the World with Us"
           subtitle="Explore breathtaking destinations and create unforgettable memories with our curated travel experiences"
@@ -22,8 +22,8 @@ export default function Home() {
         />
 
         <section className="py-16 relative overflow-hidden">
-          <div className="absolute inset-0 pattern-dots opacity-30 -z-10"></div>
-          <div className="container">
+          <div className="absolute w-full h-full pattern-dots opacity-30 -z-10"></div>
+          <div className="container max-w-full px-4">
             <div className="grid gap-8 md:grid-cols-2 items-center">
               <motion.div
                 initial={{ opacity: 0, x: -50 }}
@@ -34,8 +34,7 @@ export default function Home() {
                 <h2 className="text-3xl font-bold mb-4 gradient-text">Experience the Joy of Travel</h2>
                 <p className="text-muted-foreground mb-6">
                   At TravelEase, we believe that travel is not just about visiting new places, but about creating
-                  meaningful connections and experiences that last a lifetime. Our mission is to make travel accessible,
-                  enjoyable, and enriching for everyone.
+                  meaningful connections and experiences that last a lifetime.
                 </p>
                 <p className="text-muted-foreground mb-6">
                   Whether you're seeking adventure, relaxation, cultural immersion, or a mix of everything, our expertly
@@ -47,7 +46,7 @@ export default function Home() {
               </motion.div>
 
               <motion.div
-                className="relative card-image-container rounded-lg overflow-hidden glass"
+                className="relative w-full max-w-full card-image-container rounded-lg overflow-hidden glass"
                 initial={{ opacity: 0, x: 50 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true, amount: 0.2 }}
@@ -56,7 +55,7 @@ export default function Home() {
                 <img
                   src="/pic1.jpg?height=400&width=600"
                   alt="Travel experience"
-                  className="w-full h-full object-cover"
+                  className="w-full max-w-full h-auto object-cover"
                 />
               </motion.div>
             </div>
@@ -68,8 +67,7 @@ export default function Home() {
         <FeaturedTours />
         <ImageGallery />
       </main>
-      <Footer className="site-footer" />
+      <Footer />
     </div>
   )
 }
-

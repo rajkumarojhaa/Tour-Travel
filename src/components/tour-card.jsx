@@ -4,7 +4,7 @@ import { Button } from "./ui/button"
 import { motion } from "framer-motion"
 import { Card, CardContent, CardFooter, CardHeader } from "./ui/card"
 
-export function TourCard({ id, name, photos, address, price, rating }) {
+export function TourCard({ id, name, photos, address, price, rating, styles }) {
   return (
     <Card className="overflow-hidden h-full flex flex-col">
       <div className="relative h-48">
@@ -31,7 +31,7 @@ export function TourCard({ id, name, photos, address, price, rating }) {
           <span className="text-lg font-bold gradient-text">${price?.priceMin || "500"}</span>
             <span className="text-muted-foreground text-sm"> / person</span>
           </div>
-          {/* <div className="text-sm text-muted-foreground">{amenities}</div> */}
+          <div className="text-sm text-muted-foreground">{styles?.[0]}</div>
         </div>
       </CardContent>
       <CardFooter className="p-4 pt-0">

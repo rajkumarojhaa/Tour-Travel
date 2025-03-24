@@ -19,7 +19,7 @@ export default function Tours() {
   useEffect(() => {
     const options = {
       method: 'GET',
-      url: 'https://real-time-tripadvisor-scraper-api.p.rapidapi.com/tripadvisor_restaurants_search_v2',
+      url: 'https://real-time-tripadvisor-scraper-api.p.rapidapi.com/tripadvisor_hotels_search_v2',
       params: {location: 'india'},
       headers: {
         'x-rapidapi-key': '8b2433d626msha7dee48a2972e2ep1f6e58jsn3405de35e2f0',
